@@ -1,0 +1,43 @@
+name: Python CI
+
+on: push
+
+jobs:
+
+  check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.9.2
+        # make depends on poetry
+      - name: Install dependencies
+        run: |
+          pip install poetry
+          make install
+      - name: Run Linter and tests
+        run: |
+          make lint
+          make test
+  
+  coverage:
+    needs: [ check ]
+    name: coverage
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - uses: actions/setup-python@v2
+        with:
+          python-version: 3.9.2
+      - run: |
+          pip install poetry
+          make install
+      - uses: paambaati/codeclimate-action@v2.7.5
+        env:
+          CC_TEST_REPORTER_ID: 705b5bf99f5c43f36a4309717b8f6549178e50ce22b38a6ce148baed9397901b
+        with:
+          coverageCommand: make test-coverage

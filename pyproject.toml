@@ -4,7 +4,7 @@ version = "0.1.0"
 description = ""
 authors = ["maddclif <maddclif24@gmail.com>"]
 packages = [
-    { include = "scripts" },
+    { include = "gendiff" },
 ]
 
 [tool.poetry.dependencies]
@@ -13,9 +13,10 @@ python = "^3.9"
 [tool.poetry.dev-dependencies]
 flake8 = "^3.8.4"
 pytest = "^6.2.2"
+pytest-cov = "^2.11.1"
 
 [tool.poetry.scripts]
-gendiff = "scripts.gendiff:main"
+gendiff = "gendiff.scripts.generate_diff:main"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
