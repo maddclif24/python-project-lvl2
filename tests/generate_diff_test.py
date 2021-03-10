@@ -10,6 +10,8 @@ json_two = json.load(open('./tests/fixtures/json_file2.json'))
 
 flat_yaml_one = yaml.safe_load(open('./tests/fixtures/flat_yaml1.yml'))
 flat_yaml_two = yaml.safe_load(open('./tests/fixtures/flat_yaml2.yml'))
+yaml_one = yaml.safe_load(open('./tests/fixtures/yaml_file1.yml'))
+yaml_two = yaml.safe_load(open('./tests/fixtures/yaml_file2.yml'))
 
 flat_json_and_yaml_true = '''{
   - follow: False
@@ -77,3 +79,7 @@ def test_flat_yaml():
 
 def test_json_files():
     assert generate_diff(json_one, json_two) == template
+
+
+def test_yaml_files():
+    assert generate_diff(yaml_one, yaml_two) == template
