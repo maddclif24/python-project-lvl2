@@ -18,5 +18,4 @@ def main():
     else:
         file1 = yaml.safe_load(open(args.first_file))
         file2 = yaml.safe_load(open(args.second_file))
-    print(file1, file2)
     print(generate_diff(file1, file2))
